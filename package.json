@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  },
+  "name": "desafiozedia",
+  "description": "PhoneFinder: Desafio Desenvolvedor Full Stack (ZEDIA)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camila-nizer/Zedia-fullstack-developer-challenge.git"
+  },
+  "author": "Camila Nizer Porfirio da Rosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camila-nizer/Zedia-fullstack-developer-challenge/issues"
+  },
+  "homepage": "https://github.com/camila-nizer/Zedia-fullstack-developer-challenge#readme"
+}
