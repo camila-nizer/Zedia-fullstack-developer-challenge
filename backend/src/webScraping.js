@@ -5,6 +5,9 @@ let htmlNumbers=[]
 let regexNumberPhone =/(\+\d{2,2}[-. ]?)?((\(\d{2,2}\)[-. ]?)|(\d{2,2})[-. ]?)?((\9?\d{4,4})|(\9[-. ]\d{4,4}))[-. ]?\d{4}/g;
 const getPhones = (req, res) =>{
     const url= req.query.url
+    console.log(url)
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Request-Width, Content-Type, Accept")
 
     rp(url)
         .then(function(html){
@@ -50,6 +53,7 @@ const getPhones = (req, res) =>{
             console.log("Erro: ",err)
         })
 }
+// TO DO: OLHAR BUG (NÃO ESTÁ ATUALIZANDO O ARRAY QUANDO PASSA URL DIFERENTE)
 module.exports = {
     "getPhones": getPhones
 }

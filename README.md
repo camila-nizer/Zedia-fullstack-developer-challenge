@@ -21,7 +21,20 @@ Iniciei filtragem somente pela tag body do HTML para afunilar as buscas.
 Por já ter conhecimento prévio em Regex esta foi a escolha para identificação das cadeias de caracteres de interesse (telefones), gerando um array de números. 
 Logo após realizei filtragem no array de números para excluir valores duplicados.
 
+Links de código pesquisado (Request-promise):
+
+https://www.npmjs.com/package/request-promise
+
+https://github.com/request/request-promise
+
 #Frontend
+
+Link de código pesquisado (Axios): 
+
+https://www.npmjs.com/package/axios
+https://github.com/axios/axios
+
+
 
 ## Trocas que você pode ter feito, qualquer coisa que você deixou de fora, ou o que você pode fazer diferente se você gastar mais tempo no projeto
 
