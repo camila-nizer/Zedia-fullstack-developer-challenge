@@ -1,16 +1,15 @@
 const rp= require('request-promise')
 
-let htmlPhones= []
-let htmlNumbers=[]
+
 let regexNumberPhone =/(\+\d{2,2}[-. ]?)?((\(\d{2,2}\)[-. ]?)|(\d{2,2})[-. ]?)?((\9?\d{4,4})|(\9[-. ]\d{4,4}))[-. ]?\d{4}/g;
-const getPhones = (req, res) =>{
-    const url= req.query.url
-    console.log(url)
+let getPhones = (req, res) =>{
+    let url= req.query.url
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "Origin, X-Request-Width, Content-Type, Accept")
-
     rp(url)
         .then(function(html){
+            let htmlPhones= {}
+            let htmlNumbers=[]
             let indexBodyOpen= html.indexOf("<body>")
             let indexBodyClose=html.indexOf("</body>")
             let htmlBody= html.slice(indexBodyOpen,indexBodyClose)
@@ -40,20 +39,44 @@ const getPhones = (req, res) =>{
                 }  
             }
             htmlNumbers= htmlBody.match(regexNumberPhone)
-
-            //TO DO: implementar tabela hash para verificar quantas vezes o mesmo número incorre no array
-            for(i=0; i<htmlNumbers.length; i++){
-                if(htmlPhones.indexOf(htmlNumbers[i])==-1){
-                    htmlPhones.push(htmlNumbers[i])
+            if(htmlNumbers && htmlNumbers.length>0){
+                for(i=0; i<htmlNumbers.length; i++){
+                    const telefone= htmlNumbers[i]
+                    const quantTelefone= 1
+                    if( htmlPhones[telefone] == null){
+                        htmlPhones[telefone]=quantTelefone
+                    }
+                    else{
+                        htmlPhones[telefone]=htmlPhones[telefone]+1
+                    }
                 }
+                let keysOfMap= Object.keys(htmlPhones)
+                let arrayForFront=[]
+                for(j=0;j<keysOfMap.length; j++){
+                    let insertToArrayFront={}
+                    insertToArrayFront["telefone"]=keysOfMap[j]
+                    insertToArrayFront["quantidade"]=htmlPhones[keysOfMap[j]]
+                    arrayForFront.push(insertToArrayFront)
+                }
+                res.status(200).send(arrayForFront)
             }
-            res.status(200).send(htmlPhones)
+            else{
+                res.status(200).send([])
+            }           
         })
-        .catch(function(err){
-            console.log("Erro: ",err)
+        .catch(function(error){
+        //const mensagemError=error.response.error
+            console.log("Erro: ",error)
+            res.send(error)
         })
 }
-// TO DO: OLHAR BUG (NÃO ESTÁ ATUALIZANDO O ARRAY QUANDO PASSA URL DIFERENTE)
 module.exports = {
     "getPhones": getPhones
 }
+
+
+
+// let a=[]
+// map= {"batata":1}
+// map[telefone]
+// a.push(map)

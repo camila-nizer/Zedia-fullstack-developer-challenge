@@ -50,6 +50,7 @@
   border: 0 none;
   outline: 0;
   color: #1ed26e;
+  font-weight: bold;
   font-family: 'Source Sans Pro', 'Source Code Pro';
 
 }
@@ -69,6 +70,7 @@ padding: 0;
 .container-results{
   background-color: white;
   width: 39%;
+  min-height: 50px;
 }
 .informacoes{
   height: 30%;
@@ -76,13 +78,44 @@ padding: 0;
 }
 .informacoes-encontradas{
   color: #9b9b9b;
-  font-size: small;
-  text-align: justify;
+  font-size: 15px;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .telefones{
   padding: 0;
   text-align: center;
   width: 79%;
+}
+.quantidade{
+  font-size: 15px;
+  width: 20%;
+  text-align: right;
+}
+.telefone{
+  font-size: 25px;
+  width: 70%;
+  text-align: left;
+  margin-left: 20px;
+
+}
+.primeiro-telefone{
+  font-size: 28px;
+  width: 70%;
+  text-align: left;
+  margin-left: 20px;
+  color: #1ed26e;
+  font-weight: bold;
+}
+.exibir-arrays{
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 
 
