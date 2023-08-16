@@ -1,6 +1,5 @@
 const rp= require('request-promise')
 
-
 let regexNumberPhone =/(\+\d{2,2}[-. ]?)?((\(\d{2,2}\)[-. ]?)|(\d{2,2})[-. ]?)?((\9?\d{4,4})|(\9[-. ]\d{4,4}))[-. ]?\d{4}/g;
 let getPhones = (req, res) =>{
     let url= req.query.url
@@ -10,12 +9,12 @@ let getPhones = (req, res) =>{
         .then(function(html){
             let htmlPhones= {}
             let htmlNumbers=[]
-            let indexBodyOpen= html.indexOf("<body>")
+            let indexBodyOpen= html.indexOf("<body")
             let indexBodyClose=html.indexOf("</body>")
             let htmlBody= html.slice(indexBodyOpen,indexBodyClose)
-            let fistFilter=true
-            let secondFilter=true
-            while(fistFilter){
+            let filterTags=true
+            let filterScript=true
+            while(filterScript){
                 let findIndexOpenScript= htmlBody.indexOf("<script")
                 if(findIndexOpenScript>-1){
                     let findIndexCloseScript= htmlBody.indexOf("</script>",findIndexOpenScript)
@@ -23,11 +22,10 @@ let getPhones = (req, res) =>{
                     let sliceCloseScript= htmlBody.slice(findIndexCloseScript)
                     htmlBody=sliceOpenScript+sliceCloseScript
                 }else{
-                    fistFilter=false
-                    
+                    filterScript=false
                 }
             }
-            while(secondFilter){
+            while(filterTags){
                 let findIndexOpenTag= htmlBody.indexOf("<")
                 if(findIndexOpenTag>-1){
                     let findIndexClosetag= htmlBody.indexOf(">", findIndexOpenTag)
@@ -35,7 +33,7 @@ let getPhones = (req, res) =>{
                     let sliceCloseTag=htmlBody.slice(findIndexClosetag)
                     htmlBody= sliceOpenTag+sliceCloseTag
                 }else{
-                    secondFilter=false
+                    filterTags=false
                 }  
             }
             htmlNumbers= htmlBody.match(regexNumberPhone)
@@ -81,10 +79,3 @@ let getPhones = (req, res) =>{
 module.exports = {
     "getPhones": getPhones
 }
-
-
-
-// let a=[]
-// map= {"batata":1}
-// map[telefone]
-// a.push(map)

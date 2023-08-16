@@ -8,7 +8,7 @@ function App() {
   const [urlString, setUrlString] = useState('')
   const [arrayNumbers, setArrayNumbers]= useState([])
   const [mensagemError, setMensagemError]=useState('')
-  const [msgmPlaceholder, setMsgmPlaceholder]=useState('Digite a URL aqui')
+  const [msgmPlaceholder, setMsgmPlaceholder]=useState('Digite a URL aqui (Com http/https no início)')
   const [tempo, setTempo]=useState('')
 
   let pegaUrl= (event) =>{
@@ -19,24 +19,24 @@ function App() {
       let dataInicial= new Date()
       axios.get('http://localhost:3000/findPhones/', {params: {
           url: urlString
-      }})
+      }}) 
       .then(function (response){
           console.log(response)
           setArrayNumbers(response.data)
-          if(arrayNumbers.length==0){
+          if(response.data.length<1){
             setMensagemError("Não foram encontrados números na página")
           }else{
             setMensagemError('')
           }
-      let dataFinal= new Date()
-      setTempo(dataFinal-dataInicial)
+          let dataFinal= new Date()
+          setTempo(dataFinal-dataInicial)
       })
       .catch(function (error){
           console.log(error)
           setMensagemError(error.response.data)
       })
     }else{
-      setMsgmPlaceholder("Insira uma URL para pesquisar")
+      setMsgmPlaceholder("Insira uma URL para pesquisar (Com http/https no início)")
       setArrayNumbers('')
       setMensagemError('')
     }
