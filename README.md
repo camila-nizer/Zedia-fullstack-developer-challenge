@@ -39,15 +39,18 @@ https://github.com/axios/axios
 ## Trocas que você pode ter feito, qualquer coisa que você deixou de fora, ou o que você pode fazer diferente se você gastar mais tempo no projeto
 
 Regex não contempla números 0800 e números de emergência.
-Aplicação não funciona com links que sejam .pdf
+Aplicação não funciona com links que sejam.pdf
+Código do Frontend se concentra no arquivo App.js, inicialmente fiz vários arquivos para fazer um Clean Code mas não obtive sucesso.
 
 ## Link para outro código do qual você está particularmente orgulhoso
 
+https://github.com/camila-nizer/projetoConverteMoedas/tree/camila-nizer-porfirio-da-rosa
 
+Este é um projeto de conversão de moedas realizado no semestre passado com utilização de AndroidStudio
 
 ## Link para o seu currículo ou perfil público
 
 Linkedin: <https://www.linkedin.com/in/camila-nizer-porfirio-da-rosa>
 
-## Link para o aplicativo hospedado quando aplicável
+
 

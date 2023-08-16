@@ -40,7 +40,7 @@ let getPhones = (req, res) =>{
             }
             htmlNumbers= htmlBody.match(regexNumberPhone)
             if(htmlNumbers && htmlNumbers.length>0){
-                for(i=0; i<htmlNumbers.length; i++){
+                for(i=0; i<htmlNumbers.length; i++){ //array (htmlPhones) for map (telefone:quantidade)
                     const telefone= htmlNumbers[i]
                     const quantTelefone= 1
                     if( htmlPhones[telefone] == null){
@@ -52,12 +52,21 @@ let getPhones = (req, res) =>{
                 }
                 let keysOfMap= Object.keys(htmlPhones)
                 let arrayForFront=[]
-                for(j=0;j<keysOfMap.length; j++){
+                for(j=0;j<keysOfMap.length; j++){ //maps for array of Maps
                     let insertToArrayFront={}
                     insertToArrayFront["telefone"]=keysOfMap[j]
                     insertToArrayFront["quantidade"]=htmlPhones[keysOfMap[j]]
-                    arrayForFront.push(insertToArrayFront)
+                    arrayForFront.push(insertToArrayFront)                    
                 }
+                arrayForFront.sort(function(a,b){ // ordernar maps no array de maps
+                    if(a.quantidade > b.quantidade){
+                        return -1
+                    }else{
+                        return true
+                    }
+                })
+                
+                                
                 res.status(200).send(arrayForFront)
             }
             else{
@@ -65,9 +74,8 @@ let getPhones = (req, res) =>{
             }           
         })
         .catch(function(error){
-        //const mensagemError=error.response.error
             console.log("Erro: ",error)
-            res.send(error)
+            res.status(400).send(error.message)
         })
 }
 module.exports = {
